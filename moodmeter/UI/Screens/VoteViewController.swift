@@ -13,7 +13,7 @@ class VoteViewController: ViewController {
         super.init(navigation: navigation)
 
         sections = session.template.items.map {
-            Section(title: $0.question, rows: ($0.minimum...$0.maximum).map {
+            Section(title: $0.question, rows: $0.answers.map {
                 Row.item(value: $0)
             })
         } + [Section(title: "", rows: [.finish])]
@@ -46,7 +46,7 @@ class VoteViewController: ViewController {
     }
 
     enum Row {
-        case item(value: Int)
+        case item(value: String)
         case finish
     }
 
@@ -82,7 +82,7 @@ extension VoteViewController: UITableViewDataSource {
         switch sections[indexPath.section].rows[indexPath.row] {
         case let .item(value):
             let cell = tableView.dequeueReusableCell(Cell.self, forIndexPath: indexPath)
-            cell.textLabel?.text = "\(value)"
+            cell.textLabel?.text = value
             cell.accessoryType = selected.contains(indexPath) ? .checkmark : .none
             cell.tintColor = Color.primary
             return cell
@@ -105,7 +105,7 @@ extension VoteViewController: UITableViewDelegate {
         } else if session.template.items.count == selected.count {
             for item in selected {
                 let id = session.template.items[item.section].id
-                let value = session.template.items[item.section].minimum + item.row
+                let value = item.row
 
                 var values = session.votes[id] ?? []
                 values.append(value)

@@ -9,8 +9,8 @@ class ResultsViewController: ViewController {
     init(navigation: AppNavigation, with session: Session) {
         self.session = session
         sections = session.template.items.map { item in
-            Section(title: item.question, rows: (item.minimum...item.maximum).map { value in
-                Row.item(value: value, count: session.votes[item.id]?.filter({ $0 == value }).count ?? 0)
+            Section(title: item.question, rows: item.answers.enumerated().map { index, value in
+                Row.item(value: value, count: session.votes[item.id]?.filter({ $0 == index }).count ?? 0)
             })
         }
         super.init(navigation: navigation)
@@ -51,7 +51,7 @@ class ResultsViewController: ViewController {
     }
 
     enum Row {
-        case item(value: Int, count: Int)
+        case item(value: String, count: Int)
     }
 
     private class Cell: UITableViewCell {
@@ -86,7 +86,7 @@ extension ResultsViewController: UITableViewDataSource {
         switch sections[indexPath.section].rows[indexPath.row] {
         case let .item(value, count):
             let cell = tableView.dequeueReusableCell(Cell.self, forIndexPath: indexPath)
-            cell.textLabel?.text = "\(value)"
+            cell.textLabel?.text = value
             cell.detailTextLabel?.text = "\(count)"
             return cell
         }

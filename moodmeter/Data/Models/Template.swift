@@ -1,13 +1,20 @@
 import Foundation
 
-struct Template {
+struct Template: Codable {
     let name: String
     let items: [Item]
 
-    struct Item {
-        let id = UUID().uuidString
+    struct Item: Codable {
+        let id: String
         let question: String
-        let minimum: Int
-        let maximum: Int
+        let answers: [String]
+    }
+}
+
+extension Template.Item {
+    init(question: String, answers: [String]) {
+        id = UUID().uuidString
+        self.question = question
+        self.answers = answers
     }
 }

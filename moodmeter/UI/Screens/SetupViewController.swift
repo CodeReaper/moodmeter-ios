@@ -13,8 +13,8 @@ class SetupViewController: ViewController {
         let template = Template(
             name: "Fridays voting session",
             items: [
-                Template.Item(question: "How stressed are you?", minimum: 1, maximum: 5),
-                Template.Item(question: "How are you?", minimum: 1, maximum: 5)
+                Template.Item(question: "How stressed are you?", answers: ["1", "2", "3", "4", "5"]),
+                Template.Item(question: "How are you?", answers: ["1", "2", "3", "4", "5"])
             ]
         )
 
