@@ -20,3 +20,6 @@ force_try:
 
 force_cast:
   severity: warning
+
+excluded:
+ - moodmeter/Assets

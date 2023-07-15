@@ -32,7 +32,7 @@ jobs:
 
       - uses: norio-nomura/action-swiftlint@3.2.1
         with:
-          args: --strict
+          args: --strict --config .swiftlint.ci.yml --config .swiftlint.yml
 
   editorconfig-check:
     name: Editorconfig check

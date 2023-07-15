@@ -71,7 +71,7 @@ class IdleViewController: ViewController {
                 }
                 self?.navigation.navigate(to: .results(in: session))
             }),
-            .danger(text: "Abort", action: { [weak self] alert in
+            .danger(text: "Abort", action: { [weak self] _ in
                 UIAlertController.build(with: [
                     .title(text: "Are you sure?"),
                     .message(text: "All entered data will be lost!"),

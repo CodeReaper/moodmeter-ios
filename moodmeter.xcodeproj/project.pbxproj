@@ -570,7 +570,7 @@
 			repositoryURL = "https://github.com/CodeReaper/SugarKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
