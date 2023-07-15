@@ -88,7 +88,7 @@ extension VoteViewController: UITableViewDataSource {
             return cell
         case .finish:
             let cell = tableView.dequeueReusableCell(Cell.self, forIndexPath: indexPath)
-            cell.textLabel?.text = "Save"
+            cell.textLabel?.text = Translations.GENERIC_SAVE
             cell.accessoryType = .none
             return cell
         }

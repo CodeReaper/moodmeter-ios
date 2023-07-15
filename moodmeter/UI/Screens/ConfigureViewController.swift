@@ -19,8 +19,7 @@ class ConfigureViewController: ViewController {
     override func viewDidLoad() { // swiftlint:disable:this function_body_length
         super.viewDidLoad()
 
-        // TODO: Add translations
-        title = "Set pin code"
+        title = Translations.CONFIGURE_TITLE
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "play.fill")!,

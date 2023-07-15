@@ -32,7 +32,7 @@ class SetupViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Templates"
+        title = Translations.SETUP_TITLE
 
         tableView
             .set(datasource: self, delegate: self)
