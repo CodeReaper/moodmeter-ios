@@ -16,7 +16,7 @@ class ConfigureViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() { // swiftlint:disable:this function_body_length
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         title = Translations.CONFIGURE_TITLE
@@ -33,68 +33,23 @@ class ConfigureViewController: ViewController {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 120, weight: .bold)
 
-        Stack
-            .views(
-                on: .vertical,
-                distributed: .fillEqually,
-                inset: NSDirectionalEdgeInsets(top: 25, leading: 15, bottom: 5, trailing: 15),
-                Stack.views(label),
-                Stack.views(
-                    on: .vertical,
-                    distributed: .fillEqually,
-                    spacing: 5,
-                    Stack.views(
-                        distributed: .fillEqually,
-                        spacing: 5,
-                        ConfiguredButton(text: "1", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        ConfiguredButton(text: "2", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        ConfiguredButton(text: "3", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:)))
-                    ),
-                    Stack.views(
-                        distributed: .fillEqually,
-                        spacing: 5,
-                        ConfiguredButton(text: "4", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        ConfiguredButton(text: "5", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        ConfiguredButton(text: "6", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:)))
-                    ),
-                    Stack.views(
-                        distributed: .fillEqually,
-                        spacing: 5,
-                        ConfiguredButton(text: "7", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        ConfiguredButton(text: "8", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        ConfiguredButton(text: "9", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:)))
-                    ),
-                    Stack.views(
-                        distributed: .fillEqually,
-                        spacing: 5,
-                        SymbolButton(name: "delete.left", tintColor: .white, target: self, action: #selector(didTapDelete)),
-                        ConfiguredButton(text: "0", borderColor: .white, roundedCorners: true, target: self, action: #selector(didTapButton(sender:))),
-                        FlexibleSpace()
-                    )
-                )
-            )
-            .layout(in: view) { make, its in
-                make(its.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
-                make(its.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
-                make(its.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
-                make(its.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
-            }
+        Stack.views(
+            on: .vertical,
+            distributed: .fillEqually,
+            inset: NSDirectionalEdgeInsets(top: 25, leading: 15, bottom: 5, trailing: 15),
+            Stack.views(label),
+            Stack.views(NumPad(delegate: self))
+        )
+        .layout(in: view) { make, its in
+            make(its.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
+            make(its.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
+            make(its.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
+            make(its.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
+        }
     }
 
     private func updateLabel() {
         label.text = repeatElement("·", count: numbers.count).joined()
-    }
-
-    @objc private func didTapButton(sender: UIButton) {
-        numbers.append(sender.titleLabel?.text ?? "")
-        updateLabel()
-    }
-
-    @objc private func didTapDelete() {
-        if !numbers.isEmpty {
-            numbers.removeLast()
-            updateLabel()
-        }
     }
 
     @objc private func didTapStart() {
@@ -104,5 +59,19 @@ class ConfigureViewController: ViewController {
         else { return }
 
         navigation.navigate(to: .idle(in: Session(template: template, pin: value)))
+    }
+}
+
+extension ConfigureViewController: NumPadEvents {
+    func didTap(button: Int) {
+        numbers.append("\(button)")
+        updateLabel()
+    }
+
+    func didTapDelete() {
+        if !numbers.isEmpty {
+            numbers.removeLast()
+            updateLabel()
+        }
     }
 }
