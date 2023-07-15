@@ -28,11 +28,11 @@
 		CD88011C2A60909000A30B1D /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88011B2A60909000A30B1D /* Buttons.swift */; };
 		CD88011F2A61D9FB00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD88011E2A61D9FB00A30B1D /* SugarKit */; };
 		CD8801212A61DD8000A30B1D /* Local.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CD8801202A61DD8000A30B1D /* Local.xcconfig */; };
-		CD8801272A62BEA900A30B1D /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8801252A62BEA900A30B1D /* LicensesViewController.swift */; };
-		CD8801282A62BEA900A30B1D /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8801262A62BEA900A30B1D /* LicenseViewController.swift */; };
 		CD8801342A62C05600A30B1D /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88012A2A62C05600A30B1D /* Translations.swift */; };
 		CD8801352A62C05600A30B1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD88012C2A62C05600A30B1D /* Localizable.strings */; };
 		CD8801362A62C05600A30B1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD88012E2A62C05600A30B1D /* InfoPlist.strings */; };
+		CD8801392A62D6A900A30B1D /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8801372A62D6A800A30B1D /* LicenseViewController.swift */; };
+		CD88013A2A62D6A900A30B1D /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8801382A62D6A900A30B1D /* LicensesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,8 +57,6 @@
 		382903F32A0D545900B4A67F /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		CD88011B2A60909000A30B1D /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		CD8801202A61DD8000A30B1D /* Local.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
-		CD8801252A62BEA900A30B1D /* LicensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LicensesViewController.swift; path = "../../../../powercast-ios/Powercast/UI/Screens/LicensesViewController.swift"; sourceTree = "<group>"; };
-		CD8801262A62BEA900A30B1D /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LicenseViewController.swift; path = "../../../../powercast-ios/Powercast/UI/Screens/LicenseViewController.swift"; sourceTree = "<group>"; };
 		CD88012A2A62C05600A30B1D /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
 		CD88012D2A62C05600A30B1D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CD88012F2A62C05600A30B1D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -66,6 +64,8 @@
 		CD8801312A62C05600A30B1D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CD8801322A62C05600A30B1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD8801332A62C05600A30B1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CD8801372A62D6A800A30B1D /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
+		CD8801382A62D6A900A30B1D /* LicensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
 		CD887B852A608D9D0020B40B /* sugarkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = sugarkit; path = ../sugarkit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,8 +134,8 @@
 			children = (
 				382903ED2A0D21C500B4A67F /* ConfigureViewController.swift */,
 				382903EF2A0D449400B4A67F /* IdleViewController.swift */,
-				CD8801252A62BEA900A30B1D /* LicensesViewController.swift */,
-				CD8801262A62BEA900A30B1D /* LicenseViewController.swift */,
+				CD8801382A62D6A900A30B1D /* LicensesViewController.swift */,
+				CD8801372A62D6A800A30B1D /* LicenseViewController.swift */,
 				382903F12A0D541800B4A67F /* ResultsViewController.swift */,
 				382903BA2A0D138B00B4A67F /* SetupViewController.swift */,
 				382903F32A0D545900B4A67F /* VoteViewController.swift */,
@@ -317,10 +317,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				382903EE2A0D21C500B4A67F /* ConfigureViewController.swift in Sources */,
+				CD88013A2A62D6A900A30B1D /* LicensesViewController.swift in Sources */,
 				382903DB2A0D167E00B4A67F /* Appearence.swift in Sources */,
 				382903E42A0D16F500B4A67F /* Color.swift in Sources */,
 				382903B12A0D11DA00B4A67F /* global.swift in Sources */,
-				CD8801282A62BEA900A30B1D /* LicenseViewController.swift in Sources */,
+				CD8801392A62D6A900A30B1D /* LicenseViewController.swift in Sources */,
 				382903EA2A0D1EFB00B4A67F /* Session.swift in Sources */,
 				CD88011C2A60909000A30B1D /* Buttons.swift in Sources */,
 				3829039D2A0D106300B4A67F /* AppDelegate.swift in Sources */,
@@ -332,7 +333,6 @@
 				382903B32A0D121A00B4A67F /* App.swift in Sources */,
 				382903F22A0D541800B4A67F /* ResultsViewController.swift in Sources */,
 				382903F02A0D449500B4A67F /* IdleViewController.swift in Sources */,
-				CD8801272A62BEA900A30B1D /* LicensesViewController.swift in Sources */,
 				382903BD2A0D138B00B4A67F /* SetupViewController.swift in Sources */,
 				3829039F2A0D106300B4A67F /* SceneDelegate.swift in Sources */,
 			);
