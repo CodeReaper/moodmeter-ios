@@ -22,4 +22,4 @@ force_cast:
   severity: warning
 
 excluded:
- - moodmeter/Assets
+  - moodmeter/Assets

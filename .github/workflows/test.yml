@@ -19,7 +19,7 @@ jobs:
           xcodebuild -project moodmeter.xcodeproj \
           -scheme moodmeter \
           -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
+          -destination 'platform=iOS Simulator' \
           -derivedDataPath './output' \
           build \
           CODE_SIGNING_ALLOWED=NO
