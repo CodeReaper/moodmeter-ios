@@ -65,7 +65,7 @@ class IdleViewController: ViewController {
                         .title(text: "Failed"),
                         .message(text: "Incorrect pin"),
                         .style(preference: .alert),
-                        .button(text: "OK", action: { _ in }),
+                        .button(text: "OK", action: { _ in })
                     ]).present(in: navigationController, animated: true)
                     return
                 }
@@ -76,7 +76,7 @@ class IdleViewController: ViewController {
                     .title(text: "Are you sure?"),
                     .message(text: "All entered data will be lost!"),
                     .style(preference: .alert),
-                    .button(text: "OK", action: { [weak self] alert in
+                    .button(text: "OK", action: { [weak self] _ in
                         self?.navigation.navigate(to: .endSession)
                     }),
                     .cancel(text: "Cancel", action: nil)

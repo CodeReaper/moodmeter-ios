@@ -1,0 +1,7 @@
+lane mobile-update-translations -i resources/translations/translations.csv -o moodmeter/Assets/Translations.swift -t ios -m 3 -k 1 \
+    -c "4 moodmeter/Assets/Translations/da.lproj/Localizable.strings" \
+    -c "4 moodmeter/Assets/Translations/da.lproj/InfoPlist.strings" \
+    -c "3 moodmeter/Assets/Translations/en-GB.lproj/Localizable.strings" \
+    -c "3 moodmeter/Assets/Translations/en-GB.lproj/InfoPlist.strings" \
+    -c "3 moodmeter/Assets/Translations/Base.lproj/Localizable.strings" \
+    -c "3 moodmeter/Assets/Translations/Base.lproj/InfoPlist.strings"

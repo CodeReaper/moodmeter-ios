@@ -7,6 +7,8 @@ indirect enum Navigation {
     case vote(in: Session)
     case results(in: Session)
     case endSession
+    case licenses
+    case license(title: String, content: String)
 }
 
 class AppNavigation {
@@ -53,6 +55,10 @@ class AppNavigation {
             } completion: { _ in
                 self.sessionNavigationController.setViewControllers([], animated: false)
             }
+        case .licenses:
+            navigationController.pushViewController(LicensesViewController(navigation: self), animated: true)
+        case let .license(title, content):
+            navigationController.pushViewController(LicenseViewController(navigation: self, title: title, content: content), animated: true)
         }
     }
 }

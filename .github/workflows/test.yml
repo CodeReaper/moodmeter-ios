@@ -1,0 +1,57 @@
+name: Tests
+
+on:
+  workflow_dispatch: {}
+  pull_request: {}
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    name: Build test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: |
+          xcodebuild -project moodmeter.xcodeproj \
+          -scheme moodmeter \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
+          -derivedDataPath './output' \
+          build \
+          CODE_SIGNING_ALLOWED=NO
+
+  swiftlint:
+    name: Swiftlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: norio-nomura/action-swiftlint@3.2.1
+        with:
+          args: --strict
+
+  editorconfig-check:
+    name: Editorconfig check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+
+      - run: editorconfig-checker
+
+  tests-succeeded:
+    name: Tests Succeeded
+    needs:
+      - build-test
+      - swiftlint
+      - editorconfig-check
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: All clear
+        run: exit 0

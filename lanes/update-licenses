@@ -1,0 +1,34 @@
+OUT=moodmeter/Assets.Licenses
+
+github_license() {
+	rm -f /tmp/license || true
+
+	curl --silent --fail -L -o /tmp/license "https://api.github.com/repos/$2/contents/LICENSE"
+
+	content=$(jq -r '.content' /tmp/license | base64 -d)
+
+	filename=$(echo "$3" | tr '/' '_')
+
+	jq --arg name "$3" --arg content "$content" '. | .name=$name | .content=$content' <<< '{}' > $OUT/$1/$filename.json
+}
+
+#
+# PACKAGES
+#
+
+mkdir -p $OUT/packages
+find $OUT/packages -type f -exec rm -f {} \;
+
+## -----
+
+packages=$(jq -r '.pins | map(.location) | .[]' < moodmeter.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved | sed 's|\.git$||' | sed 's|^https://github.com/||')
+for package in $packages; do
+	github_license packages "$package" "$package"
+done
+
+#
+# ASSETS
+#
+
+mkdir -p $OUT/assets
+find $OUT/assets -type f -exec rm -f {} \;

@@ -1,0 +1,1 @@
+lane mobile-static-resources-images -i moodmeter/Assets.xcassets -o moodmeter/Assets/Images.swift

@@ -16,7 +16,7 @@ class ConfigureViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad() { // swiftlint:disable:this function_body_length
         super.viewDidLoad()
 
         // TODO: Add translations
