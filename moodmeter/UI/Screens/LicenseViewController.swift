@@ -22,19 +22,18 @@ class LicenseViewController: ViewController {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
 
-        Stack
-            .views(
-                aligned: .center,
-                on: .vertical,
-                inset: NSDirectionalEdgeInsets(top: 25, leading: 15, bottom: 5, trailing: 15),
-                Label(text: content)
-            )
-            .layout(in: scrollView) { make, its in
-                make(its.topAnchor.constraint(equalTo: scrollView.topAnchor))
-                make(its.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor))
-                make(its.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor))
-                make(its.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor))
-                make(its.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
-            }
+        Stack.views(
+            aligned: .center,
+            on: .vertical,
+            inset: NSDirectionalEdgeInsets(top: 25, leading: 15, bottom: 5, trailing: 15),
+            Label(text: content)
+        )
+        .layout(in: scrollView) { make, its in
+            make(its.topAnchor.constraint(equalTo: scrollView.topAnchor))
+            make(its.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor))
+            make(its.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor))
+            make(its.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor))
+            make(its.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
+        }
     }
 }
