@@ -16,6 +16,8 @@ jobs:
 
       - name: Build
         run: |
+          cp moodmeter/Local.xcconfig.sample moodmeter/Local.xcconfig
+
           xcodebuild -project moodmeter.xcodeproj \
           -scheme moodmeter \
           -sdk iphonesimulator \
