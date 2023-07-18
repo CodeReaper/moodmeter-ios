@@ -13,44 +13,29 @@ jobs:
     runs-on: ubuntu-latest
     name: Check for code changes
     outputs:
-      swift: ${{ steps.swift.outputs.matches }}
+      xcode: ${{ steps.xcode.outputs.matches }}
       lint: ${{ steps.lint.outputs.matches }}
     steps:
       - uses: CodeReaper/find-diff-action@v3
-        id: swift
+        id: xcode
         with:
-          paths: moodmeter/ moodmeter.xcodeproj/
+          paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/jobs/xcodebuild.yml
       - uses: CodeReaper/find-diff-action@v3
         id: lint
         with:
-          paths: moodmeter/ moodmeter.xcodeproj/ .swiftlint*
+          paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/jobs/swiftlint.yml .swiftlint*
 
   build-test:
     name: Build test
-    runs-on: macos-latest
     needs: changes
-    if: needs.changes.outputs.swift == 'true'
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build
-        run: |
-          cp moodmeter/Local.xcconfig.sample moodmeter/Local.xcconfig
-
-          xcodebuild -project moodmeter.xcodeproj \
-          -scheme moodmeter \
-          -sdk iphonesimulator \
-          -derivedDataPath './output' \
-          build \
-          CODE_SIGNING_ALLOWED=NO
+    if: needs.changes.outputs.xcode == 'true'
+    uses: .github/workflows/jobs/xcodebuild.yaml
 
   swiftlint:
     name: Swiftlint
-    runs-on: macos-latest
     needs: changes
     if: needs.changes.outputs.lint == 'true'
-    steps:
-      - uses: actions/checkout@v3
-      - run: swiftlint --strict --config .swiftlint.ci.yml --config .swiftlint.yml
+    uses: .github/workflows/jobs/swiftlint.yaml
 
   editorconfig-check:
     name: Editorconfig check
