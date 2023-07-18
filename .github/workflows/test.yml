@@ -26,13 +26,11 @@ jobs:
           paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/swiftlint.yml .swiftlint*
 
   build-test:
-    name: Build test
     needs: changes
     if: needs.changes.outputs.xcode == 'true'
     uses: ./.github/workflows/xcodebuild.yaml
 
   swiftlint:
-    name: Swiftlint
     needs: changes
     if: needs.changes.outputs.lint == 'true'
     uses: ./.github/workflows/swiftlint.yaml
