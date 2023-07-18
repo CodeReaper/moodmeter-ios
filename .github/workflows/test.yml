@@ -7,13 +7,16 @@ on:
     branches:
       - main
 
+concurrency:
+  group: running-tests
+  cancel-in-progress: true
+
 jobs:
   build-test:
     name: Build test
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Build
         run: |
           cp moodmeter/Local.xcconfig.sample moodmeter/Local.xcconfig
@@ -27,22 +30,17 @@ jobs:
 
   swiftlint:
     name: Swiftlint
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-
-      - uses: norio-nomura/action-swiftlint@3.2.1
-        with:
-          args: --strict --config .swiftlint.ci.yml --config .swiftlint.yml
+      - run: swiftlint --strict --config .swiftlint.ci.yml --config .swiftlint.yml
 
   editorconfig-check:
     name: Editorconfig check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - uses: editorconfig-checker/action-editorconfig-checker@main
-
       - run: editorconfig-checker
 
   tests-succeeded:
