@@ -9,9 +9,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    name: Check for code changes
+    outputs:
+      swift: ${{ steps.swift.outputs.matches }}
+      lint: ${{ steps.lint.outputs.matches }}
+    steps:
+      - uses: CodeReaper/find-diff-action@v3
+        id: swift
+        with:
+          paths: moodmeter/ moodmeter.xcodeproj/
+      - uses: CodeReaper/find-diff-action@v3
+        id: lint
+        with:
+          paths: moodmeter/ moodmeter.xcodeproj/ .swiftlint*
+
   build-test:
     name: Build test
     runs-on: macos-latest
+    needs: changes
+    if: needs.changes.outputs.swift == 'true'
     steps:
       - uses: actions/checkout@v3
       - name: Build
@@ -28,6 +46,8 @@ jobs:
   swiftlint:
     name: Swiftlint
     runs-on: macos-latest
+    needs: changes
+    if: needs.changes.outputs.lint == 'true'
     steps:
       - uses: actions/checkout@v3
       - run: swiftlint --strict --config .swiftlint.ci.yml --config .swiftlint.yml
