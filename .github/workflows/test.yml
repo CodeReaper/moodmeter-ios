@@ -19,23 +19,23 @@ jobs:
       - uses: CodeReaper/find-diff-action@v3
         id: xcode
         with:
-          paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/jobs/xcodebuild.yml
+          paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/xcodebuild.yml
       - uses: CodeReaper/find-diff-action@v3
         id: lint
         with:
-          paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/jobs/swiftlint.yml .swiftlint*
+          paths: moodmeter/ moodmeter.xcodeproj/ .github/workflows/swiftlint.yml .swiftlint*
 
   build-test:
     name: Build test
     needs: changes
     if: needs.changes.outputs.xcode == 'true'
-    uses: ./.github/workflows/jobs/xcodebuild.yaml
+    uses: ./.github/workflows/xcodebuild.yaml
 
   swiftlint:
     name: Swiftlint
     needs: changes
     if: needs.changes.outputs.lint == 'true'
-    uses: ./.github/workflows/jobs/swiftlint.yaml
+    uses: ./.github/workflows/swiftlint.yaml
 
   editorconfig-check:
     name: Editorconfig check
