@@ -11,7 +11,7 @@ concurrency:
 jobs:
   changes:
     runs-on: ubuntu-latest
-    name: Check for code changes
+    name: Check for specific changes
     outputs:
       xcode: ${{ steps.xcode.outputs.matches }}
       lint: ${{ steps.lint.outputs.matches }}
@@ -28,12 +28,12 @@ jobs:
   build-test:
     needs: changes
     if: needs.changes.outputs.xcode == 'true'
-    uses: ./.github/workflows/xcodebuild.yaml
+    uses: ./.github/workflows/xcodebuild.yml
 
   swiftlint:
     needs: changes
     if: needs.changes.outputs.lint == 'true'
-    uses: ./.github/workflows/swiftlint.yaml
+    uses: ./.github/workflows/swiftlint.yml
 
   editorconfig-check:
     name: Editorconfig check
