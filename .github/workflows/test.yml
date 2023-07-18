@@ -29,13 +29,13 @@ jobs:
     name: Build test
     needs: changes
     if: needs.changes.outputs.xcode == 'true'
-    uses: .github/workflows/jobs/xcodebuild.yaml
+    uses: ./.github/workflows/jobs/xcodebuild.yaml
 
   swiftlint:
     name: Swiftlint
     needs: changes
     if: needs.changes.outputs.lint == 'true'
-    uses: .github/workflows/jobs/swiftlint.yaml
+    uses: ./.github/workflows/jobs/swiftlint.yaml
 
   editorconfig-check:
     name: Editorconfig check
