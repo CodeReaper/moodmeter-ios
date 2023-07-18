@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "sugarkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CodeReaper/SugarKit",
+      "state" : {
+        "revision" : "9f31ed4ffb33da79415183d06eb3d94721b2f7fd",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

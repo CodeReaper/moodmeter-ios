@@ -34,6 +34,13 @@ class SetupViewController: ViewController {
 
         title = Translations.SETUP_TITLE
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "questionmark.circle.fill")!,
+            style: .plain,
+            target: self,
+            action: #selector(didTapQuestionMark)
+        )
+
         tableView
             .set(datasource: self, delegate: self)
             .set(backgroundColor: Color.primary)
@@ -58,6 +65,10 @@ class SetupViewController: ViewController {
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+    }
+
+    @objc private func didTapQuestionMark() {
+        navigation.navigate(to: .licenses)
     }
 }
 
