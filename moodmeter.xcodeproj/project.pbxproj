@@ -24,6 +24,8 @@
 		382903F02A0D449500B4A67F /* IdleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382903EF2A0D449400B4A67F /* IdleViewController.swift */; };
 		382903F22A0D541800B4A67F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382903F12A0D541800B4A67F /* ResultsViewController.swift */; };
 		382903F42A0D545900B4A67F /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382903F32A0D545900B4A67F /* VoteViewController.swift */; };
+		CD81C58C2A670E6B00E88418 /* packages in Resources */ = {isa = PBXBuildFile; fileRef = CD81C58B2A670E6B00E88418 /* packages */; };
+		CD81C58E2A670E8700E88418 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = CD81C58D2A670E8700E88418 /* assets */; };
 		CD88011A2A608F7A00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD8801192A608F7A00A30B1D /* SugarKit */; };
 		CD88011C2A60909000A30B1D /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88011B2A60909000A30B1D /* Buttons.swift */; };
 		CD88011F2A61D9FB00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD88011E2A61D9FB00A30B1D /* SugarKit */; };
@@ -56,6 +58,8 @@
 		382903EF2A0D449400B4A67F /* IdleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleViewController.swift; sourceTree = "<group>"; };
 		382903F12A0D541800B4A67F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		382903F32A0D545900B4A67F /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
+		CD81C58B2A670E6B00E88418 /* packages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = packages; sourceTree = "<group>"; };
+		CD81C58D2A670E8700E88418 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		CD88011B2A60909000A30B1D /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		CD8801202A61DD8000A30B1D /* Local.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		CD88012A2A62C05600A30B1D /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
@@ -68,7 +72,6 @@
 		CD8801372A62D6A800A30B1D /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		CD8801382A62D6A900A30B1D /* LicensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
 		CD88013B2A63419100A30B1D /* NumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
-		CD887B852A608D9D0020B40B /* sugarkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = sugarkit; path = ../sugarkit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +90,6 @@
 		382903902A0D106300B4A67F = {
 			isa = PBXGroup;
 			children = (
-				CD887B842A608D9D0020B40B /* Packages */,
 				3829039B2A0D106300B4A67F /* moodmeter */,
 				3829039A2A0D106300B4A67F /* Products */,
 				CD8801182A608F7A00A30B1D /* Frameworks */,
@@ -114,6 +116,7 @@
 				382903A52A0D106600B4A67F /* Assets.xcassets */,
 				CD8801202A61DD8000A30B1D /* Local.xcconfig */,
 				382903E22A0D16F500B4A67F /* Assets */,
+				CD81C5862A670E5600E88418 /* Assets.Licenses */,
 				382903E52A0D1EFB00B4A67F /* Data */,
 				382903A72A0D106600B4A67F /* LaunchScreen.storyboard */,
 				382903CD2A0D167E00B4A67F /* Tools */,
@@ -190,6 +193,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CD81C5862A670E5600E88418 /* Assets.Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				CD81C58D2A670E8700E88418 /* assets */,
+				CD81C58B2A670E6B00E88418 /* packages */,
+			);
+			path = Assets.Licenses;
+			sourceTree = "<group>";
+		};
 		CD8801182A608F7A00A30B1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,14 +216,6 @@
 				CD88012C2A62C05600A30B1D /* Localizable.strings */,
 			);
 			path = Translations;
-			sourceTree = "<group>";
-		};
-		CD887B842A608D9D0020B40B /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				CD887B852A608D9D0020B40B /* sugarkit */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,9 +288,11 @@
 			files = (
 				382903A92A0D106600B4A67F /* LaunchScreen.storyboard in Resources */,
 				CD8801352A62C05600A30B1D /* Localizable.strings in Resources */,
+				CD81C58E2A670E8700E88418 /* assets in Resources */,
 				CD8801212A61DD8000A30B1D /* Local.xcconfig in Resources */,
 				382903A62A0D106600B4A67F /* Assets.xcassets in Resources */,
 				CD8801362A62C05600A30B1D /* InfoPlist.strings in Resources */,
+				CD81C58C2A670E6B00E88418 /* packages in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
