@@ -13,7 +13,7 @@ class LicensesViewController: ViewController {
         sections = [
             build(title: Translations.LICENSES_ASSETS_TITLE, urls: Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: "assets") ?? []),
             build(title: Translations.LICENSES_PACKAGES_TITLE, urls: Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: "packages") ?? [])
-        ]
+        ].filter({ !$0.rows.isEmpty })
 
         tableView
             .set(datasource: self, delegate: self)

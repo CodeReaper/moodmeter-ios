@@ -26,6 +26,7 @@
 		382903F42A0D545900B4A67F /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382903F32A0D545900B4A67F /* VoteViewController.swift */; };
 		CD81C58C2A670E6B00E88418 /* packages in Resources */ = {isa = PBXBuildFile; fileRef = CD81C58B2A670E6B00E88418 /* packages */; };
 		CD81C58E2A670E8700E88418 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = CD81C58D2A670E8700E88418 /* assets */; };
+		CD81C5902A67486000E88418 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81C58F2A67486000E88418 /* EditorViewController.swift */; };
 		CD88011A2A608F7A00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD8801192A608F7A00A30B1D /* SugarKit */; };
 		CD88011C2A60909000A30B1D /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88011B2A60909000A30B1D /* Buttons.swift */; };
 		CD88011F2A61D9FB00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD88011E2A61D9FB00A30B1D /* SugarKit */; };
@@ -60,6 +61,7 @@
 		382903F32A0D545900B4A67F /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		CD81C58B2A670E6B00E88418 /* packages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = packages; sourceTree = "<group>"; };
 		CD81C58D2A670E8700E88418 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		CD81C58F2A67486000E88418 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		CD88011B2A60909000A30B1D /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		CD8801202A61DD8000A30B1D /* Local.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		CD88012A2A62C05600A30B1D /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				382903ED2A0D21C500B4A67F /* ConfigureViewController.swift */,
+				CD81C58F2A67486000E88418 /* EditorViewController.swift */,
 				382903EF2A0D449400B4A67F /* IdleViewController.swift */,
 				CD8801382A62D6A900A30B1D /* LicensesViewController.swift */,
 				CD8801372A62D6A800A30B1D /* LicenseViewController.swift */,
@@ -338,6 +341,7 @@
 				382903CB2A0D162E00B4A67F /* ViewControllers.swift in Sources */,
 				CD8801342A62C05600A30B1D /* Translations.swift in Sources */,
 				382903B52A0D128D00B4A67F /* AppNavigation.swift in Sources */,
+				CD81C5902A67486000E88418 /* EditorViewController.swift in Sources */,
 				382903EB2A0D1EFB00B4A67F /* Template.swift in Sources */,
 				382903F42A0D545900B4A67F /* VoteViewController.swift in Sources */,
 				382903B32A0D121A00B4A67F /* App.swift in Sources */,

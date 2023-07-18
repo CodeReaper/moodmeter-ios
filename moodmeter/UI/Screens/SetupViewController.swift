@@ -19,9 +19,8 @@ class SetupViewController: ViewController {
         )
 
         rows = [
-            Row.item(label: template.name, onSelection: { [weak self] in
-                self?.navigation.navigate(to: .configure(with: template))
-            })
+            Row.item(template: template),
+            Row.item(template: template)
         ]
     }
 
@@ -34,11 +33,18 @@ class SetupViewController: ViewController {
 
         title = Translations.SETUP_TITLE
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "questionmark.circle.fill")!,
             style: .plain,
             target: self,
             action: #selector(didTapQuestionMark)
+        )
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "text.badge.plus")!,
+            style: .plain,
+            target: self,
+            action: #selector(didTapEdit)
         )
 
         tableView
@@ -51,10 +57,12 @@ class SetupViewController: ViewController {
                 make(its.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
                 make(its.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
             }
+
+        tableView.allowsSelectionDuringEditing = true
     }
 
     enum Row {
-        case item(label: String, onSelection: (() -> Void)?)
+        case item(template: Template)
     }
 
     private class Cell: UITableViewCell {
@@ -70,6 +78,12 @@ class SetupViewController: ViewController {
     @objc private func didTapQuestionMark() {
         navigation.navigate(to: .licenses)
     }
+
+    @objc private func didTapEdit() {
+        navigationItem.leftBarButtonItem?.isEnabled = tableView.isEditing
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        tableView.reloadData()
+    }
 }
 
 extension SetupViewController: UITableViewDataSource {
@@ -78,15 +92,22 @@ extension SetupViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows.count
+        return tableView.isEditing ? rows.count + 1 : rows.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(Cell.self, forIndexPath: indexPath)
+        guard indexPath.row < rows.count else {
+            cell.textLabel?.text = nil
+            cell.accessoryType = .none
+            return cell
+        }
+
         switch rows[indexPath.row] {
-        case let .item(label, endpoint):
-            let cell = tableView.dequeueReusableCell(Cell.self, forIndexPath: indexPath)
-            cell.textLabel?.text = label
-            cell.accessoryType = endpoint == nil ? .none : .disclosureIndicator
+        case let .item(template):
+            cell.textLabel?.text = template.name
+            cell.accessoryType = .disclosureIndicator
+            cell.editingAccessoryType = .disclosureIndicator
             return cell
         }
     }
@@ -97,8 +118,30 @@ extension SetupViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         switch rows[indexPath.row] {
-        case let .item(_, onSelection):
-            onSelection?()
+        case let .item(template):
+            navigation.navigate(to: tableView.isEditing ? .editor(with: template) : .configure(with: template))
+        }
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        guard indexPath.row < rows.count else {
+            return .insert
+        }
+        return .delete
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .insert:
+            rows.append(Row.item(template: Template(name: "New item", items: [])))
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        case .delete:
+            rows.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .none:
+            fallthrough
+        @unknown default:
+            return
         }
     }
 }
