@@ -25,7 +25,7 @@ extension Storage where T == Template {
     }
 }
 
-private class EditableTemplate: Editable {
+private class EditableTemplate {
     private let storage: Storage<Template>
     private var template: Template
 
@@ -34,6 +34,16 @@ private class EditableTemplate: Editable {
         self.storage = storage
     }
 
+    func save(editable: EditableItem) {
+        var list = template.items
+        list.remove(at: editable.index)
+        list.insert(editable.item, at: editable.index)
+        template = Template(id: template.id, name: template.name, items: list)
+        save()
+    }
+}
+
+extension EditableTemplate: Editable {
     var id: String { template.id }
 
     var type: String { Translations.EDITOR_SECTION_NAME }
@@ -47,8 +57,9 @@ private class EditableTemplate: Editable {
 
     var items: [String] { template.items.map { $0.question } }
 
-    let canAdd = true
-    let canEdit = true
+    var canAdd: Bool { true }
+
+    var canEdit: Bool { true }
 
     func add() {
         var list = template.items
@@ -81,17 +92,9 @@ private class EditableTemplate: Editable {
     func save() {
         storage.save(template)
     }
-
-    func save(editable: EditableItem) {
-        var list = template.items
-        list.remove(at: editable.index)
-        list.insert(editable.item, at: editable.index)
-        template = Template(id: template.id, name: template.name, items: list)
-        save()
-    }
 }
 
-private class EditableItem: Editable {
+private class EditableItem {
     private let delegate: EditableTemplate
     let index: Int
     var item: Template.Item
@@ -102,6 +105,16 @@ private class EditableItem: Editable {
         self.item = item
     }
 
+    func save(editable: EditableAnswer) {
+        var list = item.answers
+        list.remove(at: editable.index)
+        list.insert(editable.answer, at: editable.index)
+        item = Template.Item(id: item.id, question: item.question, answers: list)
+        save()
+    }
+}
+
+extension EditableItem: Editable {
     var id: String { item.id }
 
     var type: String { Translations.EDITOR_SECTION_QUESTIONS }
@@ -115,8 +128,9 @@ private class EditableItem: Editable {
 
     var items: [String] { item.answers }
 
-    let canAdd = true
-    let canEdit = true
+    var canAdd: Bool { true }
+
+    var canEdit: Bool { true }
 
     func add() {
         var list = item.answers
@@ -149,17 +163,9 @@ private class EditableItem: Editable {
     func save() {
         delegate.save(editable: self)
     }
-
-    func save(editable: EditableAnswer) {
-        var list = item.answers
-        list.remove(at: editable.index)
-        list.insert(editable.answer, at: editable.index)
-        item = Template.Item(id: item.id, question: item.question, answers: list)
-        save()
-    }
 }
 
-private class EditableAnswer: Editable {
+private class EditableAnswer {
     private let delegate: EditableItem
 
     let index: Int
@@ -170,7 +176,9 @@ private class EditableAnswer: Editable {
         self.index = index
         self.answer = answer
     }
+}
 
+extension EditableAnswer: Editable {
     var id: String { answer }
 
     var type: String { Translations.EDITOR_SECTION_ANSWERS }
@@ -184,8 +192,9 @@ private class EditableAnswer: Editable {
 
     var items: [String] { [] }
 
-    let canAdd = false
-    let canEdit = false
+    var canAdd: Bool { false }
+
+    var canEdit: Bool { false }
 
     func add() {}
 

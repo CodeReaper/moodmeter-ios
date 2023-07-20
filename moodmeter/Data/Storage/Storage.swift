@@ -6,6 +6,8 @@ class Storage<T: Codable & Storable> {
     private var store: Store
 
     init(tag: String) {
+        precondition(tag.count >= 2, "Given tag was too short")
+
         if !FileManager.default.fileExists(atPath: url.path(percentEncoded: false)) {
             try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         }

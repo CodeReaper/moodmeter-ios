@@ -37,12 +37,7 @@ class ResultsViewController: ViewController {
             .set(datasource: self, delegate: self)
             .set(backgroundColor: Color.primary)
             .registerClass(Cell.self)
-            .layout(in: view) { make, its in
-                make(its.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
-                make(its.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
-                make(its.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
-                make(its.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
-            }
+            .setup(in: view)
     }
 
     struct Section {
