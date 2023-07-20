@@ -17,4 +17,8 @@
 "LICENSES_ASSETS_TITLE" = "Assets";
 "LICENSES_PACKAGES_TITLE" = "Packages";
 "LICENSES_TITLE" = "Licenser";
+"MENU_ADD_ITEM" = "Tilføj";
+"MENU_EDIT" = "Rediger";
+"MENU_LICENSES" = "Licenser";
+"MENU_TITLE" = "Menu";
 "SETUP_TITLE" = "Skabeloner";

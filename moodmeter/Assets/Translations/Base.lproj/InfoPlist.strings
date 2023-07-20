@@ -17,4 +17,8 @@
 "LICENSES_ASSETS_TITLE" = "Assets";
 "LICENSES_PACKAGES_TITLE" = "Packages";
 "LICENSES_TITLE" = "Licenses";
+"MENU_ADD_ITEM" = "Add item";
+"MENU_EDIT" = "Edit items";
+"MENU_LICENSES" = "Licenses";
+"MENU_TITLE" = "Menu";
 "SETUP_TITLE" = "Templates";

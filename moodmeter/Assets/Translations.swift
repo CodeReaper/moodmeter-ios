@@ -20,5 +20,9 @@ struct Translations {
 	static let LICENSES_ASSETS_TITLE = NSLocalizedString("LICENSES_ASSETS_TITLE", comment: "")
 	static let LICENSES_PACKAGES_TITLE = NSLocalizedString("LICENSES_PACKAGES_TITLE", comment: "")
 	static let LICENSES_TITLE = NSLocalizedString("LICENSES_TITLE", comment: "")
+	static let MENU_ADD_ITEM = NSLocalizedString("MENU_ADD_ITEM", comment: "")
+	static let MENU_EDIT = NSLocalizedString("MENU_EDIT", comment: "")
+	static let MENU_LICENSES = NSLocalizedString("MENU_LICENSES", comment: "")
+	static let MENU_TITLE = NSLocalizedString("MENU_TITLE", comment: "")
 	static let SETUP_TITLE = NSLocalizedString("SETUP_TITLE", comment: "")
 }

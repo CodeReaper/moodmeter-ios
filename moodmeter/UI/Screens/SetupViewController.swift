@@ -3,25 +3,11 @@ import SugarKit
 
 class SetupViewController: ViewController {
     private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let storage: Storage<Template>
 
-    private var rows: [Row]!
-
-    override init(navigation: AppNavigation) {
+    init(navigation: AppNavigation, templates: Storage<Template>) {
+        self.storage = templates
         super.init(navigation: navigation)
-
-        // TODO: manage templates instead of this hardcoded one
-        let template = Template(
-            name: "Fridays voting session",
-            items: [
-                Template.Item(question: "How stressed are you?", answers: ["1", "2", "3", "4", "5"]),
-                Template.Item(question: "How are you?", answers: ["1", "2", "3", "4", "5"])
-            ]
-        )
-
-        rows = [
-            Row.item(template: template),
-            Row.item(template: template)
-        ]
     }
 
     required init?(coder: NSCoder) {
@@ -32,20 +18,6 @@ class SetupViewController: ViewController {
         super.viewDidLoad()
 
         title = Translations.SETUP_TITLE
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "questionmark.circle.fill")!,
-            style: .plain,
-            target: self,
-            action: #selector(didTapQuestionMark)
-        )
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "text.badge.plus")!,
-            style: .plain,
-            target: self,
-            action: #selector(didTapEdit)
-        )
 
         tableView
             .set(datasource: self, delegate: self)
@@ -59,10 +31,26 @@ class SetupViewController: ViewController {
             }
 
         tableView.allowsSelectionDuringEditing = true
+
+        updateBarButtons()
     }
 
-    enum Row {
-        case item(template: Template)
+    private func updateBarButtons() {
+        if tableView.isEditing {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                image: UIImage(systemName: "xmark")!,
+                style: .plain,
+                target: self,
+                action: #selector(toogleEditing)
+            )
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                image: UIImage(systemName: "line.3.horizontal")!,
+                style: .plain,
+                target: self,
+                action: #selector(didTapMenu)
+            )
+        }
     }
 
     private class Cell: UITableViewCell {
@@ -75,14 +63,25 @@ class SetupViewController: ViewController {
         }
     }
 
-    @objc private func didTapQuestionMark() {
-        navigation.navigate(to: .licenses)
+    @objc private func toogleEditing() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        updateBarButtons()
     }
 
-    @objc private func didTapEdit() {
-        navigationItem.leftBarButtonItem?.isEnabled = tableView.isEditing
-        tableView.setEditing(!tableView.isEditing, animated: true)
-        tableView.reloadData()
+    @objc private func didTapMenu() {
+        UIAlertController.build(with: [
+            .button(text: Translations.MENU_ADD_ITEM, action: { _ in
+                self.storage.save(Template(name: "-", items: []))
+                self.tableView.insertRows(at: [IndexPath(row: self.storage.count - 1, section: 0)], with: .automatic)
+            }),
+            .button(text: Translations.MENU_EDIT, action: { _ in
+                self.toogleEditing()
+            }),
+            .button(text: Translations.MENU_LICENSES, action: { _ in
+                self.navigation.navigate(to: .licenses)
+            }),
+            .cancel(text: Translations.GENERIC_CANCEL, action: nil)
+        ]).present(in: self, animated: true)
     }
 }
 
@@ -92,24 +91,16 @@ extension SetupViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.isEditing ? rows.count + 1 : rows.count
+        return storage.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let template = storage.item(at: indexPath.row)
         let cell = tableView.dequeueReusableCell(Cell.self, forIndexPath: indexPath)
-        guard indexPath.row < rows.count else {
-            cell.textLabel?.text = nil
-            cell.accessoryType = .none
-            return cell
-        }
-
-        switch rows[indexPath.row] {
-        case let .item(template):
-            cell.textLabel?.text = template.name
-            cell.accessoryType = .disclosureIndicator
-            cell.editingAccessoryType = .disclosureIndicator
-            return cell
-        }
+        cell.textLabel?.text = template.name
+        cell.accessoryType = .disclosureIndicator
+        cell.editingAccessoryType = .disclosureIndicator
+        return cell
     }
 }
 
@@ -117,28 +108,28 @@ extension SetupViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        switch rows[indexPath.row] {
-        case let .item(template):
-            navigation.navigate(to: tableView.isEditing ? .editor(with: template) : .configure(with: template))
-        }
+        let template = storage.item(at: indexPath.row)
+        navigation.navigate(to: tableView.isEditing ? .editor(with: template) : .configure(with: template))
+    }
+
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        storage.move(index: sourceIndexPath.row, to: destinationIndexPath.row)
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        guard indexPath.row < rows.count else {
-            return .insert
-        }
         return .delete
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
-        case .insert:
-            rows.append(Row.item(template: Template(name: "New item", items: [])))
-            tableView.insertRows(at: [indexPath], with: .automatic)
         case .delete:
-            rows.remove(at: indexPath.row)
+            storage.delete(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-        case .none:
+        case .none, .insert:
             fallthrough
         @unknown default:
             return
