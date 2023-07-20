@@ -2,6 +2,7 @@ import UIKit
 
 indirect enum Navigation {
     case setup
+    case editor(with: Editable)
     case configure(with: Template)
     case idle(in: Session)
     case vote(in: Session)
@@ -16,6 +17,8 @@ class AppNavigation {
     private var sessionNavigationController = UINavigationController()
 
     private var window: UIWindow?
+
+    private let templates = Storage<Template>(tag: "template")
 
     func setup(using window: UIWindow) {
         self.window = window
@@ -33,7 +36,9 @@ class AppNavigation {
 
         switch endpoint {
         case .setup:
-            navigationController.setViewControllers([SetupViewController(navigation: self)], animated: false)
+            navigationController.setViewControllers([SetupViewController(navigation: self, templates: templates)], animated: false)
+        case .editor(let template):
+            navigationController.pushViewController(EditorViewController(navigation: self, with: template), animated: true)
         case .configure(let template):
             navigationController.pushViewController(ConfigureViewController(navigation: self, with: template), animated: true)
         case .idle(let session):

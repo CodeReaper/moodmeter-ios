@@ -26,6 +26,10 @@
 		382903F42A0D545900B4A67F /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382903F32A0D545900B4A67F /* VoteViewController.swift */; };
 		CD81C58C2A670E6B00E88418 /* packages in Resources */ = {isa = PBXBuildFile; fileRef = CD81C58B2A670E6B00E88418 /* packages */; };
 		CD81C58E2A670E8700E88418 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = CD81C58D2A670E8700E88418 /* assets */; };
+		CD81C5932A69467000E88418 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81C5922A69467000E88418 /* Storage.swift */; };
+		CD81C5952A694D8D00E88418 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81C5942A694D8D00E88418 /* Storable.swift */; };
+		CD81C5972A6983F900E88418 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81C5962A6983F900E88418 /* EditorViewController.swift */; };
+		CD81C5992A698C9500E88418 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81C5982A698C9500E88418 /* Editable.swift */; };
 		CD88011A2A608F7A00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD8801192A608F7A00A30B1D /* SugarKit */; };
 		CD88011C2A60909000A30B1D /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88011B2A60909000A30B1D /* Buttons.swift */; };
 		CD88011F2A61D9FB00A30B1D /* SugarKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD88011E2A61D9FB00A30B1D /* SugarKit */; };
@@ -60,6 +64,10 @@
 		382903F32A0D545900B4A67F /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		CD81C58B2A670E6B00E88418 /* packages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = packages; sourceTree = "<group>"; };
 		CD81C58D2A670E8700E88418 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		CD81C5922A69467000E88418 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		CD81C5942A694D8D00E88418 /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		CD81C5962A6983F900E88418 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		CD81C5982A698C9500E88418 /* Editable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		CD88011B2A60909000A30B1D /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		CD8801202A61DD8000A30B1D /* Local.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		CD88012A2A62C05600A30B1D /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 				CD8801372A62D6A800A30B1D /* LicenseViewController.swift */,
 				382903F12A0D541800B4A67F /* ResultsViewController.swift */,
 				382903BA2A0D138B00B4A67F /* SetupViewController.swift */,
+				CD81C5962A6983F900E88418 /* EditorViewController.swift */,
 				382903F32A0D545900B4A67F /* VoteViewController.swift */,
 			);
 			path = Screens;
@@ -180,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				382903E62A0D1EFB00B4A67F /* Models */,
+				CD81C5912A69465D00E88418 /* Storage */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -200,6 +210,16 @@
 				CD81C58B2A670E6B00E88418 /* packages */,
 			);
 			path = Assets.Licenses;
+			sourceTree = "<group>";
+		};
+		CD81C5912A69465D00E88418 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				CD81C5982A698C9500E88418 /* Editable.swift */,
+				CD81C5942A694D8D00E88418 /* Storable.swift */,
+				CD81C5922A69467000E88418 /* Storage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		CD8801182A608F7A00A30B1D /* Frameworks */ = {
@@ -335,11 +355,15 @@
 				382903EA2A0D1EFB00B4A67F /* Session.swift in Sources */,
 				CD88011C2A60909000A30B1D /* Buttons.swift in Sources */,
 				3829039D2A0D106300B4A67F /* AppDelegate.swift in Sources */,
+				CD81C5992A698C9500E88418 /* Editable.swift in Sources */,
 				382903CB2A0D162E00B4A67F /* ViewControllers.swift in Sources */,
 				CD8801342A62C05600A30B1D /* Translations.swift in Sources */,
 				382903B52A0D128D00B4A67F /* AppNavigation.swift in Sources */,
 				382903EB2A0D1EFB00B4A67F /* Template.swift in Sources */,
+				CD81C5932A69467000E88418 /* Storage.swift in Sources */,
 				382903F42A0D545900B4A67F /* VoteViewController.swift in Sources */,
+				CD81C5952A694D8D00E88418 /* Storable.swift in Sources */,
+				CD81C5972A6983F900E88418 /* EditorViewController.swift in Sources */,
 				382903B32A0D121A00B4A67F /* App.swift in Sources */,
 				382903F22A0D541800B4A67F /* ResultsViewController.swift in Sources */,
 				382903F02A0D449500B4A67F /* IdleViewController.swift in Sources */,

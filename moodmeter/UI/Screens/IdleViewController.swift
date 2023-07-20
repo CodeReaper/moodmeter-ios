@@ -30,12 +30,7 @@ class IdleViewController: ViewController {
             ConfiguredButton(text: Translations.IDLE_BUTTON_END, borderColor: .white, backgroundColor: Color.secondary, roundedCorners: true, target: self, action: #selector(didTapEnd)).set(height: 60)
         )
         .apply(flexible: .fillEqual)
-        .layout(in: view) { make, its in
-            make(its.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
-            make(its.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
-            make(its.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
-            make(its.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
-        }
+        .setup(in: view)
     }
 
     @objc private func didTapVote() {

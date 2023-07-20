@@ -13,18 +13,13 @@ class LicensesViewController: ViewController {
         sections = [
             build(title: Translations.LICENSES_ASSETS_TITLE, urls: Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: "assets") ?? []),
             build(title: Translations.LICENSES_PACKAGES_TITLE, urls: Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: "packages") ?? [])
-        ]
+        ].filter({ !$0.rows.isEmpty })
 
         tableView
             .set(datasource: self, delegate: self)
             .set(backgroundColor: Color.primary)
             .registerClass(Cell.self)
-            .layout(in: view) { make, its in
-                make(its.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor))
-                make(its.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor))
-                make(its.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
-                make(its.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
-            }
+            .setup(in: view)
     }
 
     private func build(title: String, urls: [URL]) -> Section {

@@ -1,11 +1,17 @@
 "ALERT_ABORT_SESSION_MESSAGE" = "All entered votes will be lost!";
 "ALERT_ABORT_SESSION_TITLE" = "Are you sure?";
+"ALERT_DISMISS_CHANGES_MESSAGE" = "All changes will be lost, if you continue";
+"ALERT_DISMISS_CHANGES_TITLE" = "Discard changes";
 "ALERT_END_SESSION_INPUT_PLACEHOLER" = "Pin code";
 "ALERT_END_SESSION_MESSAGE" = "Enter pin code";
 "ALERT_END_SESSION_TITLE" = "Locked";
 "ALERT_INCORRECT_PIN_MESSAGE" = "Incorrect pin code";
 "ALERT_INCORRECT_PIN_TITLE" = "Failed";
 "CONFIGURE_TITLE" = "Set pin code";
+"EDITOR_SECTION_ANSWERS" = "Answers";
+"EDITOR_SECTION_NAME" = "Name";
+"EDITOR_SECTION_QUESTIONS" = "Questions";
+"EDITOR_TITLE" = "Editor";
 "GENERIC_ABORT" = "Abort";
 "GENERIC_CANCEL" = "Cancel";
 "GENERIC_OK" = "OK";
@@ -17,4 +23,8 @@
 "LICENSES_ASSETS_TITLE" = "Assets";
 "LICENSES_PACKAGES_TITLE" = "Packages";
 "LICENSES_TITLE" = "Licenses";
+"MENU_ADD_ITEM" = "Add item";
+"MENU_EDIT" = "Edit items";
+"MENU_LICENSES" = "Licenses";
+"MENU_TITLE" = "Menu";
 "SETUP_TITLE" = "Templates";

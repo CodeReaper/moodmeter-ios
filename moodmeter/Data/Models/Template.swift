@@ -1,6 +1,7 @@
 import Foundation
 
-struct Template: Codable {
+struct Template: Codable, Storable {
+    let id: String
     let name: String
     let items: [Item]
 
@@ -8,6 +9,14 @@ struct Template: Codable {
         let id: String
         let question: String
         let answers: [String]
+    }
+}
+
+extension Template {
+    init(name: String, items: [Item]) {
+        id = UUID().uuidString
+        self.name = name
+        self.items = items
     }
 }
 
