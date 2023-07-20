@@ -21,7 +21,9 @@ class Storage<T: Codable & Storable> {
 
     func save(_ item: T) {
         persist(item)
-        store.items.append(item.id)
+        if !store.items.contains(item.id) {
+            store.items.append(item.id)
+        }
         persistStore()
     }
 
@@ -49,10 +51,10 @@ class Storage<T: Codable & Storable> {
     }
 
     private class func retrieveStore(at url: URL, with tag: String) -> Store {
-        let indexUrl = url.appending(path: "\(tag).index")
+        let storeUrl = url.appending(path: "\(tag).store")
 
-        if FileManager.default.fileExists(atPath: indexUrl.path(percentEncoded: false)) {
-            return try! JSONDecoder().decode(Store.self, from: Data(contentsOf: indexUrl))
+        if FileManager.default.fileExists(atPath: storeUrl.path(percentEncoded: false)) {
+            return try! JSONDecoder().decode(Store.self, from: Data(contentsOf: storeUrl))
         } else {
             return Store(version: 0, items: [])
         }
@@ -63,7 +65,7 @@ class Storage<T: Codable & Storable> {
     }
 
     private func persistStore() {
-        try! JSONEncoder().encode(store).write(to: url.appending(path: "\(tag).index"))
+        try! JSONEncoder().encode(store).write(to: url.appending(path: "\(tag).store"))
     }
 
     // swiftlint:enable force_try

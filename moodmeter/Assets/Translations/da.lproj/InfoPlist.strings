@@ -1,11 +1,17 @@
 "ALERT_ABORT_SESSION_MESSAGE" = "Alle afgivne stemmer vil gå tabt!";
 "ALERT_ABORT_SESSION_TITLE" = "Er du sikker?";
+"ALERT_DISMISS_CHANGES_MESSAGE" = "Alle ændringer vil gå tabt, hvis du fortsætter";
+"ALERT_DISMISS_CHANGES_TITLE" = "Ignorer ændringer";
 "ALERT_END_SESSION_INPUT_PLACEHOLER" = "Pin kode";
 "ALERT_END_SESSION_MESSAGE" = "Indtast pin kode";
 "ALERT_END_SESSION_TITLE" = "Kræver kode";
 "ALERT_INCORRECT_PIN_MESSAGE" = "Forkert pin kode";
 "ALERT_INCORRECT_PIN_TITLE" = "Fejl";
 "CONFIGURE_TITLE" = "Sæt pin kode";
+"EDITOR_SECTION_ANSWERS" = "Svar";
+"EDITOR_SECTION_NAME" = "Navn";
+"EDITOR_SECTION_QUESTIONS" = "Spørgsmål";
+"EDITOR_TITLE" = "Redigering";
 "GENERIC_ABORT" = "Afbryd";
 "GENERIC_CANCEL" = "Annuller";
 "GENERIC_OK" = "OK";

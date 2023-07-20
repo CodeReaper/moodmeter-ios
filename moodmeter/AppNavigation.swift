@@ -2,7 +2,7 @@ import UIKit
 
 indirect enum Navigation {
     case setup
-    case editor(with: Template)
+    case editor(with: Editable)
     case configure(with: Template)
     case idle(in: Session)
     case vote(in: Session)

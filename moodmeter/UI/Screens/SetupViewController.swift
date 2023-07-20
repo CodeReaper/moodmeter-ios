@@ -14,6 +14,11 @@ class SetupViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -108,8 +113,7 @@ extension SetupViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let template = storage.item(at: indexPath.row)
-        navigation.navigate(to: tableView.isEditing ? .editor(with: template) : .configure(with: template))
+        navigation.navigate(to: tableView.isEditing ? .editor(with: storage.edit(index: indexPath.row)) : .configure(with: storage.item(at: indexPath.row)))
     }
 
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
